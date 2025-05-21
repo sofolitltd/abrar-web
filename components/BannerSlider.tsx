@@ -86,7 +86,7 @@ const BannerSlider: React.FC = () => {
 
     const autoPlayInterval = setInterval(() => {
       nextSlide();
-    }, 5000); // Change slide every 5 seconds
+    }, 10000); // Change slide every 5 seconds
 
     // Cleanup interval on component unmount or dependencies change
     return () => clearInterval(autoPlayInterval);
@@ -94,7 +94,7 @@ const BannerSlider: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64 bg-gray-100 dark:bg-gray-100 rounded-lg shadow-md">
+      <div className="flex items-center justify-center mx-auto h-64 sm:h-80 md:h-[500px] bg-gray-100 dark:bg-gray-100 rounded-lg shadow-md">
         <p className="text-gray-50 dark:text-gray-300">Loading banners...</p>
       </div>
     );
@@ -139,12 +139,7 @@ const BannerSlider: React.FC = () => {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             style={{ objectFit: "cover" }}
             className="transition-opacity duration-500 ease-in-out"
-            // Fallback for broken images
-            onError={(e) => {
-              (
-                e.target as HTMLImageElement
-              ).src = `https://placehold.co/1024x512/cccccc/999999?text=Image+Error`;
-            }}
+        
           />
         </Link>
       )}

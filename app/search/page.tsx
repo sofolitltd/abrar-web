@@ -7,7 +7,8 @@ import { collection, getDocs, QuerySnapshot, DocumentData } from 'firebase/fires
 import { db } from '@/lib/firebase';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AlertTriangle, ChevronLeft, Search as SearchIcon, XCircle } from 'lucide-react';
+import { AlertTriangle, Search as SearchIcon, XCircle } from 'lucide-react';
+import BackButton from '@/components/BackButton';
 
 // Define the structure of the lightweight product for caching
 interface CachedProduct {
@@ -142,24 +143,22 @@ function SearchResults({
             >
               <div className="flex-shrink-0 w-16 h-16 relative mr-4 rounded-md overflow-hidden">
                 <Image
-                  src={product.firstImage || `https://placehold.co/96x96/cccccc/999999?text=${encodeURIComponent(product.name)}`}
+                  src={product.firstImage || ``}
                   alt={product.name}
                   fill
                   style={{ objectFit: 'cover' }}
                   sizes="80px"
-                  onError={e => {
-                    (e.target as HTMLImageElement).src = `https://placehold.co/96x96/cccccc/999999?text=Err`;
-                  }}
+              
                 />
               </div>
               <div className="flex-grow">
                 <h3 className="text-base font-semibold text-gray-800">{product.name}</h3>
                 <div className="flex items-baseline mt-1">
                   {product.regularPrice > 0 && product.salePrice && product.regularPrice > product.salePrice && (
-                    <span className="text-gray-500 text-sm line-through mr-2">${product.regularPrice.toFixed(2)}</span>
+                    <span className="text-gray-500 text-sm line-through mr-2">  ৳ {``}{product.regularPrice.toFixed(0)}</span>
                   )}
                   <span className="text-blue-600 text-lg font-bold">
-                    ${(product.salePrice && product.salePrice > 0 ? product.salePrice : product.regularPrice).toFixed(2)}
+                      ৳ {``}{(product.salePrice && product.salePrice > 0 ? product.salePrice : product.regularPrice).toFixed(0)}
                   </span>
                 </div>
               </div>
@@ -256,10 +255,7 @@ export default function SearchPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6 flex justify-between items-center">
-        <Link href="/" className="inline-flex items-center text-blue-600 hover:text-blue-700 group">
-          <ChevronLeft size={20} className="mr-1 transition-transform group-hover:-translate-x-1" />
-          <span className="font-medium">Back to Home</span>
-        </Link>
+        <BackButton />
       </div>
 
       <Suspense fallback={<div className="text-center text-gray-600 text-lg p-8">Loading search results...</div>}>

@@ -27,7 +27,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   return (
     <div className="flex flex-col items-center">
       {/* Main Product Image Section */}
-      <div className="relative h-96  w-96 md:w-80 xl:w-96 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg mb-4">
+      <div className="relative h-96  w-96 md:w-80 xl:w-96 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg mb-4">
         {selectedImage ? (
           <Image
             src={selectedImage}

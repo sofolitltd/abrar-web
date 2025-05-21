@@ -36,26 +36,24 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h2>
 
-          <div className=" flex gap-4">
-          {product.regularPrice > 0 &&
-            product.salePrice > 0 &&
-            product.regularPrice > product.salePrice && (
-              <p className="text-gray-500 text-lg line-through">
-                ৳ {``}
-{product.regularPrice.toFixed(0)}
-              </p>
-            )}
-          
+          <div className=" flex gap-3">
+            {product.regularPrice > 0 &&
+              product.salePrice > 0 &&
+              product.regularPrice > product.salePrice && (
+                <p className="text-gray-500 text-lg line-through">
+                  ৳ {``}
+                  {product.regularPrice.toFixed(0)}
+                </p>
+              )}
 
-  <p className="text-gray-800 text-lg font-bold">
-            ৳ {``}
-            {(product.salePrice > 0
-              ? product.salePrice
-              : product.regularPrice
-            ).toFixed(0)}
-          </p>
+            <p className="text-gray-800 text-lg font-bold">
+              ৳ {``}
+              {(product.salePrice > 0
+                ? product.salePrice
+                : product.regularPrice
+              ).toFixed(0)}
+            </p>
           </div>
-        
         </div>
       </Link>
     </div>

@@ -12,6 +12,7 @@ import ProductCard from "@/components/ProductCard";
 import { Product } from "@/lib/types";
 import { db } from "@/lib/firebase";
 import Link from "next/link";
+import BackButton from "@/components/BackButton";
 
 // Define how many products per page
 const PRODUCTS_PER_PAGE = 8;
@@ -69,9 +70,7 @@ export default async function AllProductsPage({ searchParams }: AllProductsPageP
   return (
     <div className="container mx-auto px-4 py-4">
       <div className="mb-6">
-        <Link href="/" className="inline-block text-blue-600 hover:text-blue-800 font-semibold text-lg">
-          ← Back to Home
-        </Link>
+        <BackButton />
       </div>
       <h1 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-8 text-center">All Products</h1>
 
